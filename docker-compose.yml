@@ -5,8 +5,8 @@ services:
     build: .
     image: holmantai/carnd_t2:latest
     network_mode: "host"
-    command: /bin/bash
+    command: sh /carND/EKDP/build/build.sh
     volumes:
       - .:/carND/EKDP
-    stdin_open: true
-    tty: true
+    # stdin_open: true
+    # tty: true
