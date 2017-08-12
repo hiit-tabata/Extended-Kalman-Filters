@@ -120,11 +120,13 @@ still be compilable with cmake and make.
 
 ## Build Docker image
 ```
-docker build -f ./Dockerfile .
+docker-compose build
 ```
 
-## Open a bash
+## build and start the program
 ```
 docker-compose up
-docker exec -ti 9fc6ef31c1e8 /bin/bash
 ```
+
+## Result
+![result](result.png)

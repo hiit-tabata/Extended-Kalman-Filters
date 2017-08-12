@@ -46,18 +46,18 @@ int main()
     if (length && length > 2 && data[0] == '4' && data[1] == '2')
     {
 
-      std::cout << "h.onMessage  " << std::endl;
+      // std::cout << "h.onMessage  " << std::endl;
 
       auto s = hasData(std::string(data));
       if (s != "") {
-        std::cout << "s != "" " << std::endl;
+        // std::cout << "s != "" " << std::endl;
 
         auto j = json::parse(s);
 
         std::string event = j[0].get<std::string>();
 
         if (event == "telemetry") {
-          std::cout << "event == telemetry" << std::endl;
+          // std::cout << "event == telemetry" << std::endl;
         // j[1] is the data JSON object
 
           string sensor_measurment = j[1]["sensor_measurement"];
@@ -111,11 +111,11 @@ int main()
           gt_values(2) = vx_gt;
           gt_values(3) = vy_gt;
           ground_truth.push_back(gt_values);
-          std::cout << "ground_truth.push_back(gt_values);" << std::endl;
+          // std::cout << "ground_truth.push_back(gt_values);" << std::endl;
 
           //Call ProcessMeasurment(meas_package) for Kalman filter
           fusionEKF.ProcessMeasurement(meas_package);
-          std::cout << "fusionEKF.ProcessMeasurement(meas_package);    " << std::endl;
+          // std::cout << "fusionEKF.ProcessMeasurement(meas_package);    " << std::endl;
           //Push the current estimated x,y positon from the Kalman filter's state vector
 
           VectorXd estimate(4);
@@ -132,7 +132,7 @@ int main()
 
           estimations.push_back(estimate);
 
-          std::cout << "tools.CalculateRMSE(estimations, ground_truth);    " << std::endl;
+          // std::cout << "tools.CalculateRMSE(estimations, ground_truth);    " << std::endl;
           VectorXd RMSE = tools.CalculateRMSE(estimations, ground_truth);
 
           json msgJson;
@@ -146,10 +146,10 @@ int main()
           std::cout << msg << std::endl;
           ws.send(msg.data(), msg.length(), uWS::OpCode::TEXT);
 
-          std::cout << "ws.send(msg.data(), msg.length(), uWS::OpCode::TEXT);  " << std::endl;
+          // std::cout << "ws.send(msg.data(), msg.length(), uWS::OpCode::TEXT);  " << std::endl;
           }
       } else {
-        std::cout << "s == ""  " << std::endl;
+        // std::cout << "s == ""  " << std::endl;
 
         std::string msg = "42[\"manual\",{}]";
         ws.send(msg.data(), msg.length(), uWS::OpCode::TEXT);
